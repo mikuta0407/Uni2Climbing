@@ -1064,7 +1064,7 @@ GameObject:
   - component: {fileID: 1069973391}
   - component: {fileID: 1069973390}
   m_Layer: 0
-  m_Name: 1 - 1
+  m_Name: 1 - 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1079,7 +1079,7 @@ GUIText:
   m_GameObject: {fileID: 1069973389}
   m_Enabled: 1
   serializedVersion: 3
-  m_Text: 1 - 1
+  m_Text: 1 - 3
   m_Anchor: 4
   m_Alignment: 0
   m_PixelOffset: {x: 0, y: 0}
@@ -1667,7 +1667,7 @@ GameObject:
   - component: {fileID: 2082240982}
   - component: {fileID: 2082240983}
   m_Layer: 0
-  m_Name: 1 - 1
+  m_Name: 1 - 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1695,7 +1695,7 @@ GUIText:
   m_GameObject: {fileID: 2082240981}
   m_Enabled: 1
   serializedVersion: 3
-  m_Text: 1 - 1
+  m_Text: 1 - 3
   m_Anchor: 4
   m_Alignment: 0
   m_PixelOffset: {x: 0, y: 0}
