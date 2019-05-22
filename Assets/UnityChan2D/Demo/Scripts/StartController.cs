@@ -12,15 +12,15 @@ public class StartController : MonoBehaviour
     private string worldName;
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Keypad1)) {
+        if (Input.GetKeyDown(KeyCode.Alpha1)) {
             worldName = "World 1-1";
             StartCoroutine(LoadStage());
         }
-        if (Input.GetKeyDown(KeyCode.Keypad2)) {
+        else if (Input.GetKeyDown(KeyCode.Alpha2)) {
             worldName = "World 1-2";
             StartCoroutine(LoadStage());
         }
-        if (Input.GetKeyDown(KeyCode.Keypad3)) {
+        else if (Input.GetKeyDown(KeyCode.Alpha3)) {
             worldName = "World 1-3";
             StartCoroutine(LoadStage());
         }
