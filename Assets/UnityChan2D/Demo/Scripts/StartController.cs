@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using UnityEngine.SceneManagement;
 [RequireComponent(typeof(AudioSource))]
 public class StartController : MonoBehaviour
 {
@@ -8,12 +8,20 @@ public class StartController : MonoBehaviour
     public string nextLevel;
 
     [SerializeField]
-    private KeyCode enter = KeyCode.X;
-
+    // private KeyCode enter = KeyCode.X;
+    private string worldName;
     void Update()
     {
-        if (Input.GetKeyDown(enter))
-        {
+        if (Input.GetKeyDown(KeyCode.Keypad1)) {
+            worldName = "World 1-1";
+            StartCoroutine(LoadStage());
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad2)) {
+            worldName = "World 1-2";
+            StartCoroutine(LoadStage());
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad3)) {
+            worldName = "World 1-3";
             StartCoroutine(LoadStage());
         }
     }
@@ -30,6 +38,7 @@ public class StartController : MonoBehaviour
 
         audioSource.Play();
         yield return new WaitForSeconds(audioSource.clip.length + 0.5f);
-        Application.LoadLevel(nextLevel);
+        SceneManager.LoadScene (worldName);
+        //Application.LoadLevel(nextLevel);
     }
 }
