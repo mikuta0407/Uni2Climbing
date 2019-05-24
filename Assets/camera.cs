@@ -27,6 +27,12 @@ public class camera : MonoBehaviour
 			StartCoroutine(INTERNAL_Clear());
             enabled = false;
 		}
+
+        // FOR DEBUG: FORCE CLEAR
+        if (Input.GetKeyDown(KeyCode.B)) {
+            StartCoroutine(INTERNAL_Clear());
+        }
+
     }
 	private IEnumerator INTERNAL_Clear()
     {
