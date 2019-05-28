@@ -6,7 +6,7 @@ public class PointController : MonoBehaviour
 
     public GUIText total;
     public GUIText coin;
-    public static int score;
+    // public static int score;
 
     private static PointController m_instance;
 
@@ -26,6 +26,6 @@ public class PointController : MonoBehaviour
     {
         coin.text = (Convert.ToInt32(coin.text) + 1).ToString("00");
         total.text = (Convert.ToInt32(total.text) + 100).ToString("0000000");
-        score = total.text;
+        // score = total.text;
     }
 }

@@ -6,7 +6,7 @@ public class result : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		Debug.Log(score);
+		// Debug.Log(score);
 	}
 	
 	// Update is called once per frame
