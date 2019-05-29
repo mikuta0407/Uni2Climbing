@@ -1,7 +1,10 @@
 fileFormatVersion: 2
 guid: 15eb62b8c0b6c406abbfc0df4beffd81
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: uni_0
+    21300002: uni_1
+    21300004: uni_2
   externalObjects: {}
   serializedVersion: 5
   mipmaps:
@@ -85,7 +88,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 
+      spriteID: 66c6ac27e599e81478382921f74f603a
       vertices: []
       indices: 
       edges: []
@@ -105,7 +108,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 
+      spriteID: 97fa3a9d9f561f7439209e738b2c3bd6
       vertices: []
       indices: 
       edges: []
@@ -125,7 +128,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 
+      spriteID: 0f7d288ee14f9304685337d795dff3b8
       vertices: []
       indices: 
       edges: []
