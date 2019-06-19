@@ -3754,6 +3754,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d273ba7a5ba0a22458f48183747cfc82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nowLevel: 
   nextLevel: 
 --- !u!1001 &730648323
 Prefab:
@@ -9288,7 +9289,7 @@ GUIText:
   m_GameObject: {fileID: 1636569203}
   m_Enabled: 1
   serializedVersion: 3
-  m_Text: 1 - 1
+  m_Text: 1 - 3
   m_Anchor: 4
   m_Alignment: 0
   m_PixelOffset: {x: 0, y: 0}

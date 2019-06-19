@@ -62,7 +62,7 @@ public class camera : MonoBehaviour
         }
 
         yield return new WaitForSeconds(3);
-		SceneManager.LoadScene ("Start");
+		SceneManager.LoadScene (nextLevel);
         // Application.LoadLevel(nextLevel);
     }
 }
