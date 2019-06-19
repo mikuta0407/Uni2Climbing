@@ -24,8 +24,9 @@ public class PointController : MonoBehaviour
 
     public void AddCoin()
     {
+        total.text = scoresaver.getscore();
         coin.text = (Convert.ToInt32(coin.text) + 1).ToString("00");
         total.text = (Convert.ToInt32(total.text) + 100).ToString("0000000");
-        // score = total.text;
+        scoresaver.setscore(total.text);
     }
 }
