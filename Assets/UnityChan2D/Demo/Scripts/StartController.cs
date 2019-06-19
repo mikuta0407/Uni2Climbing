@@ -15,6 +15,7 @@ public class StartController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1)) {
             worldName = "Loading 1-1";
+            nowworld.setworld("1-1");
             StartCoroutine(LoadStage());
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2)) {
