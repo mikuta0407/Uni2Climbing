@@ -56,6 +56,7 @@ public class camera : MonoBehaviour
             nextLevel = "Loading 1-5";
             nowworld.setworld(nextLevel);
         } else if (nowLevel == "1-5"){
+            clearflag.setflag();
             nextLevel = "result";
             nowworld.setworld(nextLevel);
         }
