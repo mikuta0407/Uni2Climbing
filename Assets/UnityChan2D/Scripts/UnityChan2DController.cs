@@ -17,6 +17,8 @@ public class UnityChan2DController : MonoBehaviour
 
     private State m_state = State.Normal;
 
+    public int hitcount;
+    
     void Reset()
     {
         Awake();
@@ -47,6 +49,8 @@ public class UnityChan2DController : MonoBehaviour
         m_animator = GetComponent<Animator>();
         m_boxcollier2D = GetComponent<BoxCollider2D>();
         m_rigidbody2D = GetComponent<Rigidbody2D>();
+
+        hitcount = count.gethit();
     }
 
     void Update()
@@ -95,6 +99,16 @@ public class UnityChan2DController : MonoBehaviour
     {
         if (other.tag == "DamageObject" && m_state == State.Normal)
         {
+            hitcount++;
+            count.addhit(hitcount);
+            
+            if (hitcount == 4){
+                // 音を鳴らす
+                // 操作が止まる
+                // ゲームオーバー判定
+            }
+
+
             m_state = State.Damaged;
             StartCoroutine(INTERNAL_OnDamage());
         }
