@@ -9,11 +9,14 @@ public class camera : MonoBehaviour
     public string nextLevel;
     GameObject player;
 
+    public GUIText total;
     // Use this for initialization
     void Start()
     {
         nowLevel = nowworld.getworld();
         this.player = GameObject.Find("DemoUnityChan2D");
+        total = total.GetComponent<GUIText> ();
+        total.text = scoresaver.getscore();
     }
 
     // Update is called once per frame

@@ -8,6 +8,10 @@ public class PointController : MonoBehaviour
     public GUIText coin;
     // public static int score;
 
+    void Start(){
+        total.text = scoresaver.getscore();
+    }
+
     private static PointController m_instance;
 
     public static PointController instance

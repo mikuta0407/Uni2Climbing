@@ -618,7 +618,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: e3ff126a806b2454eaff021fe39cea19, type: 2}
       propertyPath: jumpPower
-      value: 1150
+      value: 1200
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e3ff126a806b2454eaff021fe39cea19, type: 2}
@@ -4286,6 +4286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d273ba7a5ba0a22458f48183747cfc82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nowLevel: 
   nextLevel: 
 --- !u!1001 &730648323
 Prefab:
