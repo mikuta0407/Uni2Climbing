@@ -40,7 +40,8 @@ public class StartController : MonoBehaviour
 
         audioSource.Play();
         
-        count.addhit(0);
+        count.sethit(0);
+        count.setlife(5);
         yield return new WaitForSeconds(audioSource.clip.length + 0.5f);
         SceneManager.LoadScene (worldName);
         //Application.LoadLevel(nextLevel);

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 [RequireComponent(typeof(Animator), typeof(Rigidbody2D), typeof(BoxCollider2D))]
 public class UnityChan2DController : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class UnityChan2DController : MonoBehaviour
     private State m_state = State.Normal;
 
     public int hitcount;
+    public int life;
     
     void Reset()
     {
@@ -51,6 +53,7 @@ public class UnityChan2DController : MonoBehaviour
         m_rigidbody2D = GetComponent<Rigidbody2D>();
 
         hitcount = count.gethit();
+        life = count.getlife();
     }
 
     void Update()
@@ -100,12 +103,23 @@ public class UnityChan2DController : MonoBehaviour
         if (other.tag == "DamageObject" && m_state == State.Normal)
         {
             hitcount++;
-            count.addhit(hitcount);
+            count.sethit(hitcount);
             
             if (hitcount == 4){
+                hitcount = 0;
+                life--;
+                count.setlife(life);
                 // 音を鳴らす
                 // 操作が止まる
-                // ゲームオーバー判定
+                count.sethit(0);
+                sleep();
+                if (count.getlife() == 0){
+                    // ゲームオーバー判定
+                    sleep();
+		            SceneManager.LoadScene ("result");
+                } else {
+                    SceneManager.LoadScene ("Loading " + nowworld.getworld());
+                }
             }
 
 
@@ -114,6 +128,9 @@ public class UnityChan2DController : MonoBehaviour
         }
     }
 
+    IEnumerator sleep(){
+        yield return new WaitForSeconds(3);
+    }
     IEnumerator INTERNAL_OnDamage()
     {
         m_animator.Play(m_isGround ? "Damage" : "AirDamage");

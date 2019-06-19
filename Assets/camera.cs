@@ -12,7 +12,7 @@ public class camera : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        nowLevel=nowworld.getworld();
+        nowLevel = nowworld.getworld();
         this.player = GameObject.Find("DemoUnityChan2D");
     }
 
@@ -44,25 +44,20 @@ public class camera : MonoBehaviour
         }
 
         if (nowLevel == "1-1"){
-            nextLevel = "Loading 1-2";
-            nowworld.setworld(nextLevel);
+            nextLevel = "1-2";
         } else if (nowLevel == "1-2"){
-            nextLevel = "Loading 1-3";
-            nowworld.setworld(nextLevel);
+            nextLevel = "1-3";
         } else if (nowLevel == "1-3"){
-            nextLevel = "Loading 1-4";
-            nowworld.setworld(nextLevel);
+            nextLevel = "1-4";
         } else if (nowLevel == "1-4"){
-            nextLevel = "Loading 1-5";
-            nowworld.setworld(nextLevel);
+            nextLevel = "1-5";
         } else if (nowLevel == "1-5"){
             clearflag.setflag();
             nextLevel = "result";
-            nowworld.setworld(nextLevel);
         }
-
+        nowworld.setworld(nextLevel);
         yield return new WaitForSeconds(3);
-		SceneManager.LoadScene (nextLevel);
+		SceneManager.LoadScene ("Loading " + nextLevel);
         // Application.LoadLevel(nextLevel);
     }
 }
