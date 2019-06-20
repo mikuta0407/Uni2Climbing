@@ -122,6 +122,7 @@ GameObject:
   m_Component:
   - component: {fileID: 18202159}
   - component: {fileID: 18202160}
+  - component: {fileID: 18202161}
   m_Layer: 0
   m_Name: 00
   m_TagString: Untagged
@@ -166,6 +167,18 @@ GUIText:
     rgba: 4294967295
   m_PixelCorrect: 1
   m_RichText: 1
+--- !u!114 &18202161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 18202158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb926536fa3be4e55b452f9f265ca2db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coin: {fileID: 18202160}
 --- !u!1001 &51805783
 Prefab:
   m_ObjectHideFlags: 0
