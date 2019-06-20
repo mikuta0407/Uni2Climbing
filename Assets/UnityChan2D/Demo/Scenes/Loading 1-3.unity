@@ -1213,6 +1213,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1563230578}
   - component: {fileID: 1563230579}
+  - component: {fileID: 1563230580}
   m_Layer: 0
   m_Name: Point
   m_TagString: Untagged
@@ -1242,7 +1243,7 @@ GUIText:
   m_GameObject: {fileID: 1563230577}
   m_Enabled: 1
   serializedVersion: 3
-  m_Text: 0000000
+  m_Text: 
   m_Anchor: 3
   m_Alignment: 0
   m_PixelOffset: {x: 0, y: 0}
@@ -1257,6 +1258,18 @@ GUIText:
     rgba: 4294967295
   m_PixelCorrect: 1
   m_RichText: 1
+--- !u!114 &1563230580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1563230577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce9b89ccc389449afabf51710b502880, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  total: {fileID: 1563230579}
 --- !u!1001 &1766418799
 Prefab:
   m_ObjectHideFlags: 0
