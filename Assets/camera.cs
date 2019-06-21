@@ -24,7 +24,7 @@ public class camera : MonoBehaviour
     void Update()
     {
         Vector3 playerPos = this.player.transform.position;
-        transform.position = new Vector3(-1, playerPos.y + 0.5f, transform.position.z);
+        transform.position = new Vector3(-1, playerPos.y + 6f, transform.position.z);
 		transform.rotation = Quaternion.Euler(0,0,0);
 
 		if (playerPos.y + 0.5f > 89){
