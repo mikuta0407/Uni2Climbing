@@ -58,6 +58,12 @@ public class UnityChan2DController : MonoBehaviour
 
     void Update()
     {
+        life = count.getlife();
+        if (scoresaver.getcoin() == "100"){
+            life++;
+            scoresaver.setcoin("0");
+        }
+
         if (m_state != State.Damaged)
         {
             float x = Input.GetAxis("Horizontal");
