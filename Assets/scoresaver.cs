@@ -6,7 +6,7 @@ public class scoresaver : MonoBehaviour {
 	public static string score = "0000000";
 	public static string highscore;
 
-	public static string coin;
+	public static string coin = "00";
 	// Use this for initialization
 	void Start () {
 		
@@ -39,6 +39,6 @@ public class scoresaver : MonoBehaviour {
 	}
 	public static void setcoin(string a){
 		coin = a;
-		Debug.Log("setscore " + coin);
+		Debug.Log("setcoin " + coin);
 	}
 }

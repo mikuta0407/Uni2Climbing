@@ -10,6 +10,7 @@ public class PointController : MonoBehaviour
 
     void Start(){
         total.text = scoresaver.getscore();
+        coin.text = scoresaver.getcoin();
     }
 
     private static PointController m_instance;
@@ -29,8 +30,10 @@ public class PointController : MonoBehaviour
     public void AddCoin()
     {
         total.text = scoresaver.getscore();
+        coin.text = scoresaver.getcoin();
         coin.text = (Convert.ToInt32(coin.text) + 1).ToString("00");
         total.text = (Convert.ToInt32(total.text) + 100).ToString("0000000");
         scoresaver.setscore(total.text);
+        scoresaver.setcoin(coin.text);
     }
 }
