@@ -20,5 +20,6 @@ public class count : MonoBehaviour {
 
 	public static void setlife(int a){
 		life = a;
+		Debug.Log("SetLife : " + life);
 	}
 }

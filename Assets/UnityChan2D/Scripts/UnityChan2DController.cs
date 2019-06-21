@@ -112,9 +112,10 @@ public class UnityChan2DController : MonoBehaviour
             count.sethit(hitcount);
             
             if (hitcount == 4){
-                hitcount = 0;
                 life--;
+                Debug.Log("Life=" + life);
                 count.setlife(life);
+                hitcount = 0;
                 // 音を鳴らす
                 // 操作が止まる
                 count.sethit(0);
