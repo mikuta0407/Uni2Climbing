@@ -18,6 +18,7 @@ public class TimeController : MonoBehaviour
         if (0 <= remainingTime)
         {
             timer.text = remainingTime.ToString("000");
+            timesaver.settime(remainingTime);
         }
         else
         {

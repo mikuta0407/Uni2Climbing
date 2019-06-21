@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 [RequireComponent(typeof(Camera))]
@@ -39,6 +40,9 @@ public class camera : MonoBehaviour
     }
 	private IEnumerator INTERNAL_Clear()
     {
+        //scoresaver.setscore((int.Parse(scoresaver.getscore()) + (timesaver.gettime()*10)).ToString());
+        scoresaver.setscore( ( (Convert.ToInt32(scoresaver.getscore())) + (timesaver.gettime()*10) ) .ToString("0000000") );
+        
         var player = GameObject.FindGameObjectWithTag("Player");
 
         if (player)
