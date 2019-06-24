@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class TimeController : MonoBehaviour
 {
@@ -23,9 +24,9 @@ public class TimeController : MonoBehaviour
         else
         {
             GameObject player = GameObject.FindGameObjectWithTag("Player");
-            if (player)
-            {
-                StartCoroutine(LoadNextLevel());
+            if (player){
+                count.sethit(0);
+                LoadNextLevel();
                 enabled = false;
             }
         }
@@ -41,7 +42,6 @@ public class TimeController : MonoBehaviour
         }
 
         yield return new WaitForSeconds(3);
-
-        Application.LoadLevel(nextLevel);
+		SceneManager.LoadScene ("Loading " + nowworld.getworld());
     }
 }

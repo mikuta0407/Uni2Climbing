@@ -59,6 +59,7 @@ public class UnityChan2DController : MonoBehaviour
     void Update()
     {
         life = count.getlife();
+        hitcount = count.gethit();
         if (scoresaver.getcoin() == "100"){
             life++;
             scoresaver.setcoin("0");
@@ -70,6 +71,7 @@ public class UnityChan2DController : MonoBehaviour
             bool jump = Input.GetButtonDown("Jump");
             Move(x, jump);
         }
+        
     }
 
     void Move(float move, bool jump)

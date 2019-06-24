@@ -13,7 +13,7 @@ public class StartController : MonoBehaviour
     private string worldName;
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space)) {
+        if (Input.GetKeyDown(KeyCode.Return)) {
             worldName = "Loading 1-1";
             nowworld.setworld("1-1");
             StartCoroutine(LoadStage());
