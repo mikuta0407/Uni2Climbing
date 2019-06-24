@@ -1229,7 +1229,7 @@ GUIText:
   m_GameObject: {fileID: 1187452961}
   m_Enabled: 1
   serializedVersion: 3
-  m_Text: PRESS X START
+  m_Text: PRESS SPACE TO START
   m_Anchor: 4
   m_Alignment: 0
   m_PixelOffset: {x: 0, y: 0}
@@ -1237,7 +1237,7 @@ GUIText:
   m_TabSize: 4
   m_Font: {fileID: 12800000, guid: 025dd04cabfc64bfc8094b98f02d2774, type: 3}
   m_Material: {fileID: 0}
-  m_FontSize: 52
+  m_FontSize: 40
   m_FontStyle: 0
   m_Color:
     serializedVersion: 2

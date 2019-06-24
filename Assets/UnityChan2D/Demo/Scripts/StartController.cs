@@ -13,7 +13,12 @@ public class StartController : MonoBehaviour
     private string worldName;
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1)) {
+        if (Input.GetKeyDown(KeyCode.Space)) {
+            worldName = "Loading 1-1";
+            nowworld.setworld("1-1");
+            StartCoroutine(LoadStage());
+        }
+        /*    if (Input.GetKeyDown(KeyCode.Alpha1)) {
             worldName = "Loading 1-1";
             nowworld.setworld("1-1");
             StartCoroutine(LoadStage());
@@ -26,6 +31,7 @@ public class StartController : MonoBehaviour
             worldName = "Loading 1-3";
             StartCoroutine(LoadStage());
         }
+        */
     }
 
     private IEnumerator LoadStage()
