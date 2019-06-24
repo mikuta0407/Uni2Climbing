@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class result : MonoBehaviour {
 	public GUIText cong;
 	public GUIText cleared;
@@ -24,6 +24,8 @@ public class result : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		if (Input.GetKeyDown(KeyCode.Space)) {
+            SceneManager.LoadScene ("Start");
+        }
 	}
 }
