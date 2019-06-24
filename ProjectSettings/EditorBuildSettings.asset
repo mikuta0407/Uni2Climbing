@@ -38,7 +38,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/UnityChan2D/Demo/Scenes/World 1-5.unity
     guid: 533f8e60bd9d4384ab3019a934e8d708
-  - enabled: 1
-    path: Assets/UnityChan2D/Demo/Scenes/Result.unity
+  - enabled: 0
+    path: Assets/__DELETED_GUID_Trash/b7388a6eae8544b25b621fb9a5dea379
     guid: b7388a6eae8544b25b621fb9a5dea379
   m_configObjects: {}

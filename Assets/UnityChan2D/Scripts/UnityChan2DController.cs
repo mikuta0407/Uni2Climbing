@@ -119,10 +119,11 @@ public class UnityChan2DController : MonoBehaviour
                 // 音を鳴らす
                 // 操作が止まる
                 count.sethit(0);
-                sleep();
+                StartCoroutine("sleep");
                 if (count.getlife() == 0){
                     // ゲームオーバー判定
-                    sleep();
+                    //sleep();
+                    StartCoroutine("sleep");
 		            SceneManager.LoadScene ("result");
                 } else {
                     SceneManager.LoadScene ("Loading " + nowworld.getworld());
