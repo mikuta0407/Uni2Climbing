@@ -45,6 +45,10 @@ public class camera : MonoBehaviour
             changeScene();
         }
 
+        if (count.gethit() == 3){
+            bgm.stop();
+        }
+
     }
 	private IEnumerator INTERNAL_Clear()
     {

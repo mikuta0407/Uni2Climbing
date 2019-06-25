@@ -74,7 +74,8 @@ public class UnityChan2DController : MonoBehaviour
             Move(x, jump);
         }
 
-        if (hitcount == 4){
+        if (hitcount == 3){
+            count.sethit(3);
             if (count.getlife() == 0){
                 if (!se.GetComponent<playse>().dieplaying()){
                     se.GetComponent<playse>().playgameover();
@@ -132,7 +133,7 @@ public class UnityChan2DController : MonoBehaviour
             hitcount++;
             count.sethit(hitcount);
             
-            if (hitcount == 4){
+            if (hitcount == 3){
                 life--;
                 Debug.Log("Life=" + life);
                 count.setlife(life);

@@ -8,18 +8,15 @@ public class playse : MonoBehaviour {
 	public AudioSource die;
 	public AudioSource gameover;
     public void playgoal () {
-        goal = GetComponent<AudioSource>();
         goal.Play();
 	}
 
 	public void playdie () {
-        die = GetComponent<AudioSource>();
         die.Play();
     }
 
     public void playgameover () {
-        gameover = GetComponent<AudioSource>();
-        gameover.Play();
+       gameover.Play();
     }
 
 	public bool goalplaying(){
