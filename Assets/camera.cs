@@ -14,14 +14,13 @@ public class camera : MonoBehaviour
 
     public int goal = 0;
 
-    public GUIText total;
+    
     // Use this for initialization
     void Start()
     {
+        goal = 0;
         nowLevel = nowworld.getworld();
         this.player = GameObject.Find("DemoUnityChan2D");
-        total = total.GetComponent<GUIText> ();
-        total.text = scoresaver.getscore();
         bgm.Play();
     }
 
@@ -82,8 +81,12 @@ public class camera : MonoBehaviour
             nextLevel = "result";
         }
         nowworld.setworld(nextLevel);
-        SceneManager.LoadScene ("Loading " + nextLevel);
+        if (clearflag.getflag() == 1){
+            SceneManager.LoadScene (nextLevel);
+        } else {
+            SceneManager.LoadScene ("Loading " + nextLevel);
         // Application.LoadLevel(nextLevel);
         }
+    }
     
 }

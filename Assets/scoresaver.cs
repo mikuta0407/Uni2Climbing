@@ -18,12 +18,12 @@ public class scoresaver : MonoBehaviour {
 	}
 
 	public static string getscore(){
-		Debug.Log("getscore "+ score);
+		//Debug.Log("getscore "+ score);
 		return score;
 	}
 	public static void setscore(string a){
 		score = a;
-		Debug.Log("setscore " + score);
+		//Debug.Log("setscore " + score);
 	}
 
 	public static string gethighscore(){
@@ -34,11 +34,11 @@ public class scoresaver : MonoBehaviour {
 	}
 
 	public static string getcoin(){
-		Debug.Log("getcoin "+ coin);
+		//Debug.Log("getcoin "+ coin);
 		return coin;
 	}
 	public static void setcoin(string a){
 		coin = a;
-		Debug.Log("setcoin " + coin);
+		//Debug.Log("setcoin " + coin);
 	}
 }

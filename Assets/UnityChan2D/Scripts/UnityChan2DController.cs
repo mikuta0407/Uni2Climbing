@@ -74,18 +74,21 @@ public class UnityChan2DController : MonoBehaviour
             Move(x, jump);
         }
 
-        if (count.getlife() == 0){
-            // ゲームオーバー判定
-            if (!se.GetComponent<playse>().dieplaying()){
-                se.GetComponent<playse>().playgameover();
-            }
-            if (!se.GetComponent<playse>().gameoverplaying()){
-                SceneManager.LoadScene ("result");      
+        if (hitcount == 4){
+            if (count.getlife() == 0){
+                if (!se.GetComponent<playse>().dieplaying()){
+                    se.GetComponent<playse>().playgameover();
+                }
+                if (!se.GetComponent<playse>().gameoverplaying()){
+                    SceneManager.LoadScene ("result");
+                }
             } else {
                 if (!se.GetComponent<playse>().dieplaying()){
+                    count.sethit(0);
                     SceneManager.LoadScene ("Loading " + nowworld.getworld());
                 }
             }
+            
         }
         
     }
@@ -133,11 +136,12 @@ public class UnityChan2DController : MonoBehaviour
                 life--;
                 Debug.Log("Life=" + life);
                 count.setlife(life);
-                hitcount = 0;
+                
                 // 音を鳴らす
-                GetComponent<playse>().playdie();
+                se.GetComponent<playse>().playdie();
+                //GetComponent<playse>().playdie();
                 // 操作が止まる
-                count.sethit(0);
+                
                 
             }
 
@@ -166,8 +170,7 @@ public class UnityChan2DController : MonoBehaviour
         m_state = State.Invincible;
     }
 
-    void OnFinishedInvincibleMode()
-    {
+    void OnFinishedInvincibleMode(){
         m_state = State.Normal;
     }
 
