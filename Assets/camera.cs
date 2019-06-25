@@ -46,7 +46,7 @@ public class camera : MonoBehaviour
         }
 
         if (count.gethit() == 3){
-            bgm.stop();
+            bgm.Stop();
         }
 
     }

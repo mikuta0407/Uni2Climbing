@@ -10,8 +10,6 @@ public class TimeController : MonoBehaviour
 
     public GUIText timer;
 
-   
-
     void Update()
     {
         int remainingTime = time - Mathf.FloorToInt(Time.timeSinceLevelLoad * 2.5f);
@@ -25,23 +23,10 @@ public class TimeController : MonoBehaviour
         {
             GameObject player = GameObject.FindGameObjectWithTag("Player");
             if (player){
-                count.sethit(0);
-                LoadNextLevel();
-                enabled = false;
+                count.sethit(3);
             }
         }
+    
     }
 
-    private IEnumerator LoadNextLevel()
-    {
-        var player = GameObject.FindGameObjectWithTag("Player");
-
-        if (player)
-        {
-            player.SendMessage("TimeOver", SendMessageOptions.DontRequireReceiver);
-        }
-
-        yield return new WaitForSeconds(3);
-		SceneManager.LoadScene ("Loading " + nowworld.getworld());
-    }
 }

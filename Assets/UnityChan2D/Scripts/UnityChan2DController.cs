@@ -140,10 +140,6 @@ public class UnityChan2DController : MonoBehaviour
                 
                 // 音を鳴らす
                 se.GetComponent<playse>().playdie();
-                //GetComponent<playse>().playdie();
-                // 操作が止まる
-                
-                
             }
 
 
