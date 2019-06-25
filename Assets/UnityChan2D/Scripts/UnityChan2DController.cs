@@ -20,6 +20,7 @@ public class UnityChan2DController : MonoBehaviour
 
     public int hitcount;
     public int life;
+    public GameObject se;
     
     void Reset()
     {
@@ -62,6 +63,7 @@ public class UnityChan2DController : MonoBehaviour
         hitcount = count.gethit();
         if (scoresaver.getcoin() == "100"){
             life++;
+            count.setlife(life);
             scoresaver.setcoin("0");
         }
 
@@ -70,6 +72,20 @@ public class UnityChan2DController : MonoBehaviour
             float x = Input.GetAxis("Horizontal");
             bool jump = Input.GetButtonDown("Jump");
             Move(x, jump);
+        }
+
+        if (count.getlife() == 0){
+            // ゲームオーバー判定
+            if (!se.GetComponent<playse>().dieplaying()){
+                se.GetComponent<playse>().playgameover();
+            }
+            if (!se.GetComponent<playse>().gameoverplaying()){
+                SceneManager.LoadScene ("result");      
+            } else {
+                if (!se.GetComponent<playse>().dieplaying()){
+                    SceneManager.LoadScene ("Loading " + nowworld.getworld());
+                }
+            }
         }
         
     }
@@ -119,17 +135,10 @@ public class UnityChan2DController : MonoBehaviour
                 count.setlife(life);
                 hitcount = 0;
                 // 音を鳴らす
+                GetComponent<playse>().playdie();
                 // 操作が止まる
                 count.sethit(0);
-                StartCoroutine("sleep");
-                if (count.getlife() == 0){
-                    // ゲームオーバー判定
-                    //sleep();
-                    StartCoroutine("sleep");
-		            SceneManager.LoadScene ("result");
-                } else {
-                    SceneManager.LoadScene ("Loading " + nowworld.getworld());
-                }
+                
             }
 
 
@@ -138,9 +147,6 @@ public class UnityChan2DController : MonoBehaviour
         }
     }
 
-    IEnumerator sleep(){
-        yield return new WaitForSeconds(3);
-    }
     IEnumerator INTERNAL_OnDamage()
     {
         m_animator.Play(m_isGround ? "Damage" : "AirDamage");

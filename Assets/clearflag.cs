@@ -14,4 +14,5 @@ public class clearflag : MonoBehaviour {
 		flag = 1;
 		// 1ならクリアした 0なら死んだ
 	}
+
 }

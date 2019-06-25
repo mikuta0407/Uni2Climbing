@@ -8,7 +8,11 @@ public class camera : MonoBehaviour
 {
 	public string nowLevel;
     public string nextLevel;
+    public GameObject se;
+    public AudioSource bgm;
     GameObject player;
+
+    public int goal = 0;
 
     public GUIText total;
     // Use this for initialization
@@ -18,6 +22,7 @@ public class camera : MonoBehaviour
         this.player = GameObject.Find("DemoUnityChan2D");
         total = total.GetComponent<GUIText> ();
         total.text = scoresaver.getscore();
+        bgm.Play();
     }
 
     // Update is called once per frame
@@ -27,7 +32,7 @@ public class camera : MonoBehaviour
         transform.position = new Vector3(-1, playerPos.y + 6f, transform.position.z);
 		transform.rotation = Quaternion.Euler(0,0,0);
 
-		if (playerPos.y + 0.5f > 89){
+		if ((playerPos.x <= 0) && (playerPos.y >= 91)){
 			StartCoroutine(INTERNAL_Clear());
             enabled = false;
 		}
@@ -37,12 +42,21 @@ public class camera : MonoBehaviour
             StartCoroutine(INTERNAL_Clear());
         }
 
+        if ((goal == 1) && (!se.GetComponent<playse>().goalplaying())){
+            changeScene();
+        }
+
     }
 	private IEnumerator INTERNAL_Clear()
     {
+        bgm.Stop();
+        se.GetComponent<playse>().playgoal();
+        goal = 1;
+        Debug.Log("cleared");
         //scoresaver.setscore((int.Parse(scoresaver.getscore()) + (timesaver.gettime()*10)).ToString());
         scoresaver.setscore( ( (Convert.ToInt32(scoresaver.getscore())) + (timesaver.gettime()*10) ) .ToString("0000000") );
-        
+        se.GetComponent<playse>().playgoal();
+                
         var player = GameObject.FindGameObjectWithTag("Player");
 
         if (player)
@@ -50,6 +64,11 @@ public class camera : MonoBehaviour
             player.SendMessage("Clear", SendMessageOptions.DontRequireReceiver);
         }
 
+        yield return new WaitForSeconds(0);
+    }
+
+    private void changeScene(){
+        
         if (nowLevel == "1-1"){
             nextLevel = "1-2";
         } else if (nowLevel == "1-2"){
@@ -63,8 +82,8 @@ public class camera : MonoBehaviour
             nextLevel = "result";
         }
         nowworld.setworld(nextLevel);
-        yield return new WaitForSeconds(3);
-		SceneManager.LoadScene ("Loading " + nextLevel);
+        SceneManager.LoadScene ("Loading " + nextLevel);
         // Application.LoadLevel(nextLevel);
-    }
+        }
+    
 }
