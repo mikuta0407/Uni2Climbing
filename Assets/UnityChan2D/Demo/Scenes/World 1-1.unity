@@ -620,6 +620,14 @@ Prefab:
       propertyPath: jumpPower
       value: 1200
       objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e3ff126a806b2454eaff021fe39cea19, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e3ff126a806b2454eaff021fe39cea19, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e3ff126a806b2454eaff021fe39cea19, type: 2}
   m_IsPrefabParent: 0
@@ -4818,7 +4826,6 @@ MonoBehaviour:
   se: {fileID: 718990223}
   bgm: {fileID: 720363508}
   goal: 0
-  total: {fileID: 0}
 --- !u!82 &720363508
 AudioSource:
   m_ObjectHideFlags: 0
