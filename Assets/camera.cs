@@ -12,7 +12,7 @@ public class camera : MonoBehaviour
     public AudioSource bgm;
     GameObject player;
 
-    public int goal = 0;
+    public static bool goal = false;
     bool clear = false;
 
     
@@ -20,7 +20,7 @@ public class camera : MonoBehaviour
     void Start()
     {
         //ゴールしてないよ!っていうやつ
-        goal = 0;
+        goal = false;
         //今動いてるワールドを検出
         nowLevel = nowworld.getworld();
         //ユニティちゃんを検出(カメラの追従用)
@@ -41,13 +41,13 @@ public class camera : MonoBehaviour
 		transform.rotation = Quaternion.Euler(0,0,0);
 
         //もしゴール範囲内に入ったら
-		if ((goal == 0) && (playerPos.x <= 0) && (playerPos.y >= 91)){
+		if ((!clear) && (!goal) && (playerPos.x <= 0) && (playerPos.y >= 91)){
 			StartCoroutine(INTERNAL_Clear());
             //enabled = false;
 		}
 
         // FOR DEBUG: FORCE CLEAR
-        if ((goal == 0) && (Input.GetKeyDown(KeyCode.B))) {
+        if ((!clear) && (!goal) && (Input.GetKeyDown(KeyCode.B))) {
             StartCoroutine(INTERNAL_Clear());
         }
 
@@ -58,7 +58,7 @@ public class camera : MonoBehaviour
 
         
         // ゴールジングル鳴り終わったらシーン遷移
-        if ((clear) && (goal == 1) && (!se.GetComponent<playse>().goalplaying())){
+        if ((!clear) && (goal) && (!se.GetComponent<playse>().goalplaying())){
             Debug.Log("シーンを変えますよ!");
             changeScene();
         }
@@ -70,7 +70,7 @@ public class camera : MonoBehaviour
     {
         bgm.Stop();
         se.GetComponent<playse>().playgoal();
-        goal = 1;
+        goal = true;
         Debug.Log("cleared");
         //scoresaver.setscore((int.Parse(scoresaver.getscore()) + (timesaver.gettime()*10)).ToString());
         scoresaver.setscore( ( (Convert.ToInt32(scoresaver.getscore())) + (timesaver.gettime()*10) ) .ToString("0000000") );
@@ -99,7 +99,7 @@ public class camera : MonoBehaviour
             nextLevel = "1-5";
         } else if (nowLevel == "1-5"){
             clearflag.setflag();
-            nextLevel = "result";
+            nextLevel = "Result";
         }
         nowworld.setworld(nextLevel);
         if (clearflag.getflag() == 1){
