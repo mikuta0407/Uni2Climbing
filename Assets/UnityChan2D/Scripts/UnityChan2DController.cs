@@ -21,6 +21,8 @@ public class UnityChan2DController : MonoBehaviour
     public int hitcount;
     public int life;
     public GameObject se;
+
+    public bool die = false;
     
     void Reset()
     {
@@ -71,10 +73,15 @@ public class UnityChan2DController : MonoBehaviour
         {
             float x = Input.GetAxis("Horizontal");
             bool jump = Input.GetButtonDown("Jump");
-            Move(x, jump);
+            if (!die){
+                Move(x, jump);
+            } else {
+                Move(0, false);
+            }
         }
 
-        if (hitcount == 3){
+        if ((hitcount == 3)){
+            die = true;
             count.sethit(3);
             if (count.getlife() == 0){
                 if (!se.GetComponent<playse>().dieplaying()){
