@@ -3,20 +3,19 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
 [RequireComponent(typeof(AudioSource))]
-public class StartController : MonoBehaviour
-{
+public class StartController : MonoBehaviour{
     [SceneName]
     public string nextLevel;
 
     [SerializeField]
     // private KeyCode enter = KeyCode.X;
     private string worldName;
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Return)) {
-            worldName = "Loading 1-1";
-            nowworld.setworld("1-1");
-            StartCoroutine(LoadStage());
+    void Update(){
+
+        if (Input.GetKeyDown(KeyCode.Return)) { //Enter押されたら
+            worldName = "Loading 1-1";          //次読むこむのをLoading1-1にして(デバッグ用に選べるようにしていた名残)
+            nowworld.setworld("1-1");           //nowworldで1-1にセットして
+            StartCoroutine(LoadStage());        //シーン読み込みを開始。
         }
         /*    if (Input.GetKeyDown(KeyCode.Alpha1)) {
             worldName = "Loading 1-1";
@@ -34,10 +33,10 @@ public class StartController : MonoBehaviour
         */
     }
 
-    private IEnumerator LoadStage()
-    {
-        foreach (AudioSource audioS in FindObjectsOfType<AudioSource>())
-        {
+    private IEnumerator LoadStage(){
+        //多分まず音楽流して、音楽の長さ+0.5したらシーンチェンジしてるんじゃないですかね?
+        
+        foreach (AudioSource audioS in FindObjectsOfType<AudioSource>()){
             audioS.volume = 0.2f;
         }
 

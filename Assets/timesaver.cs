@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//時間を記録したりするやつ(記録するだけ)
+//グローバル変数代わり
+
 public class timesaver : MonoBehaviour {
 	public static int time;
 	// Use this for initialization

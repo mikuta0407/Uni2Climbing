@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Loadingシーンで残基数を表示するためだけのもの。
+//count.getlifeで拾ってきてGUITextに投げる
+//1-1だったら5を変わりにいれるよ
+
+
 public class setlife : MonoBehaviour {
 	public GUIText life;
 	private int a;

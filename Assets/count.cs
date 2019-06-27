@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//敵にあたった回数や残基を記録したり書き換えたりするもの
+//setとgetで呼び出したり書き込んだりできるよ。
+//グローバル変数代わり
+
 public class count : MonoBehaviour {
 
 	//敵接触回数

@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//スコア値やハイスコア値、コイン枚数を記録するためだけのもの。
+//グローバル変数代わり
+//getとsetで参照したり書き込んだりできるよ
+
 public class scoresaver : MonoBehaviour {
 	public static string score = "0000000";
 	public static string highscore;

@@ -4,21 +4,19 @@ using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 [RequireComponent(typeof(Camera))]
-public class camera : MonoBehaviour
-{
-	public string nowLevel;
-    public string nextLevel;
-    public GameObject se;
-    public AudioSource bgm;
-    GameObject player;
+public class camera : MonoBehaviour{
+	public string nowLevel;     //今のワールド情報を維持
+    public string nextLevel;    //次開くワールド情報を格納
+    public GameObject se;       //SE再生用
+    public AudioSource bgm;     //BGM再生用
+    GameObject player;          //プレイヤーを追従するため用
 
-    public static bool goal = false;
-    bool clear = false;
+    public static bool goal = false;    //ゴール自体をしたかの判定
+    bool clear = false;                 //シーンチェンジに突入したか判定
 
     
     // Use this for initialization
-    void Start()
-    {
+    void Start(){
         //ゴールしてないよ!っていうやつ
         goal = false;
         //今動いてるワールドを検出
@@ -30,8 +28,7 @@ public class camera : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update(){
         //カメラの位置移動
         //プレイヤーの位置を取得
         Vector3 playerPos = this.player.transform.position;
@@ -66,29 +63,35 @@ public class camera : MonoBehaviour
         
 
     }
-	private IEnumerator INTERNAL_Clear()
-    {
+	private IEnumerator INTERNAL_Clear(){   //クリアしたら呼び出される
+        
+        //BGMを停止
         bgm.Stop();
+
+        //ゴールジングルを再生(playse.csにて制御。PLAYSEオブジェクトを使用)
         se.GetComponent<playse>().playgoal();
+
+        //goalフラッグをtrueに。これしないとUpdateでこれが呼び出されまくる
         goal = true;
+
+        //クリアしたよって一応しゃべる
         Debug.Log("cleared");
-        //scoresaver.setscore((int.Parse(scoresaver.getscore()) + (timesaver.gettime()*10)).ToString());
+
+        //残り時間をスコアに変換。
+        //timesaver.csから時間が取れるので、それをscoresaverを使って記録。
         scoresaver.setscore( ( (Convert.ToInt32(scoresaver.getscore())) + (timesaver.gettime()*10) ) .ToString("0000000") );
-        se.GetComponent<playse>().playgoal();
-                
-        //var player = GameObject.FindGameObjectWithTag("Player");
 
-        //if (player)
-        //{
-        //    player.SendMessage("Clear", SendMessageOptions.DontRequireReceiver);
-        //}
-
+        //コルーチンなのでreturnがいるので虚無する。        
         yield return new WaitForSeconds(0);
     }
 
-    private void changeScene(){
+    private void changeScene(){     //シーンチェンジをします
         
+        //シーンチェンジ始まったことを判定
+        //これしないと例によってUpdateで永遠に呼び出されるので・・・
         clear = true;
+
+        //今が1-1だったら1-2を・・・みたいな感じ
         if (nowLevel == "1-1"){
             nextLevel = "1-2";
         } else if (nowLevel == "1-2"){
@@ -98,15 +101,17 @@ public class camera : MonoBehaviour
         } else if (nowLevel == "1-4"){
             nextLevel = "1-5";
         } else if (nowLevel == "1-5"){
+            //1-5は最終ステージなので、オールクリアしたことをclearflag.cs内に記録
             clearflag.setflag();
             nextLevel = "Result";
         }
+
+        //現在のレベル状況をこの時点で書き換え。
         nowworld.setworld(nextLevel);
         if (clearflag.getflag() == 1){
-            SceneManager.LoadScene (nextLevel);
+            SceneManager.LoadScene (nextLevel);     //ResultにはLoadingって文字はないので・・・
         } else {
             SceneManager.LoadScene ("Loading " + nextLevel);
-        // Application.LoadLevel(nextLevel);
         }
     }
     

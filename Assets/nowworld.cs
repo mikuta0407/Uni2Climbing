@@ -2,17 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//今いるステージ位置を記録・取得するもの
 public class nowworld : MonoBehaviour {
 	public static string world;
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
 	public static string getworld(){
 		return world;
