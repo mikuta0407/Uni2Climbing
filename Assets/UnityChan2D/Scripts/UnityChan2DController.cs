@@ -29,6 +29,8 @@ public class UnityChan2DController : MonoBehaviour{
 
     public bool dieplayed = false;
     public bool goplayed = false;
+
+    public bool s_changestart = false;
     
     void Reset(){
         Awake();
@@ -87,17 +89,34 @@ public class UnityChan2DController : MonoBehaviour{
         if ((hitcount == 3) || (clearflag.istimeover())){   //もし敵に3回あたったら
             die = true;         //死亡判定ON
             count.sethit(3);    //count.csに3回あたったことを一応記録
+            
+            if (!dieplayed){
+                // 死亡ジングル音を鳴らす
+                se.GetComponent<playse>().playdie();
+                dieplayed = true;
+                //Debug
+                Debug.Log("死にましたよ");
+            }
+            
             if (count.getlife() == 0){                          //もし残基が0だったら・・・(先にゲームオーバー時の処理)
-                if ( (!se.GetComponent<playse>().dieplaying()) && (dieplayed) ){       //かつ死亡ジングルが流れ終わってたら(死亡ジングルはOnTriggerStay2Dで流しています)
+                if ( (!se.GetComponent<playse>().dieplaying()) && (dieplayed) && (!goplayed)){       //かつ死亡ジングルが流れ終わってたら(死亡ジングルはOnTriggerStay2Dで流しています)
+                    //Debug
+                    Debug.Log("ゲームオーバー時の処理に入りました｡");
+                    
                     se.GetComponent<playse>().playgameover();       //ゲームオーバージングルを流す
                     goplayed = true;
+                    //Debug
+                    Debug.Log("ゲームオーバージングルを流しました｡");
                 }
-                if ( (!se.GetComponent<playse>().gameoverplaying()) && (goplayed) ){  //もしゲームオーバージングルが流れ終わってたら
+                if ( (!se.GetComponent<playse>().gameoverplaying()) && (goplayed) && (dieplayed)){  //もしゲームオーバージングルが流れ終わってたら
+                    //Debug
+                    Debug.Log("Resultシーンを呼び出します｡");
                     SceneManager.LoadScene ("Result");              //Resultシーンを呼び出します。
                 }
             } else {                                            //まだ残基に余裕があったら
-                if ( (!se.GetComponent<playse>().dieplaying()) && (dieplayed) ){       //死亡ジングルがなり終わっていたら
+                if ( (!se.GetComponent<playse>().dieplaying()) && (dieplayed) && (!s_changestart) ){       //死亡ジングルがなり終わっていたら
                     count.sethit(0);                                //hit数を0に戻して、
+                    s_changestart = true;
                     SceneManager.LoadScene ("Loading " + nowworld.getworld()); //もう一回同じマップを呼び出す。
                 }
             }
