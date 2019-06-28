@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using System;
 
-public class TimeController : MonoBehaviour
-{
+public class TimeController : MonoBehaviour{
     public int time;
     [SceneName]
     public string nextLevel;
@@ -20,7 +20,7 @@ public class TimeController : MonoBehaviour
             GameObject player = GameObject.FindGameObjectWithTag("Player");
             if (player){
                 count.sethit(3);    //タイムオーバーしたらヒット数を3にする
-                remainingTime = (int)timer.text; //固定化(要テスト)
+                remainingTime = Convert.ToInt32("timer.text"); //固定化(要テスト)
             }
         }
     
