@@ -81,7 +81,7 @@ public class UnityChan2DController : MonoBehaviour{
         }
 
         //↓ここはUpdateに振り回されないようにする必要があるかもしれない。
-        if ((hitcount == 3)){   //もし敵に3回あたったら
+        if ((hitcount == 3) || (clearflag.istimeover())){   //もし敵に3回あたったら
             die = true;         //死亡判定ON
             count.sethit(3);    //count.csに3回あたったことを一応記録
             if (count.getlife() == 0){                          //もし残基が0だったら・・・(先にゲームオーバー時の処理)

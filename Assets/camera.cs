@@ -25,6 +25,9 @@ public class camera : MonoBehaviour{
         this.player = GameObject.Find("DemoUnityChan2D");
         //BGMの再生開始。(BGMはInspectorで設定)
         bgm.Play();
+
+        clearflag.truetimeover(false);
+        clearflag.truemapclear(false);
     }
 
     // Update is called once per frame
@@ -73,6 +76,7 @@ public class camera : MonoBehaviour{
 
         //goalフラッグをtrueに。これしないとUpdateでこれが呼び出されまくる
         goal = true;
+        clearflag.truemapclear(true);
 
         //クリアしたよって一応しゃべる
         Debug.Log("cleared");

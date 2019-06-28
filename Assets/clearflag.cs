@@ -8,9 +8,12 @@ using UnityEngine;
 //もしかしたらタイムオーバー時のが来るかもしれない?
 public class clearflag : MonoBehaviour {
 
-	//やってることはそのまんまです。Boolにすればよかったかも・・・
-	public static int flag = 0;
+	//やってることはそのまんまです。flagもboolにしたいね
+	public static int flag = 0; //(1-5)
 
+	public static bool mapclear;
+
+	public static bool timeover = false;
 	public static int getflag(){
 		return flag;
 	}
@@ -18,6 +21,22 @@ public class clearflag : MonoBehaviour {
 	public static void setflag(){
 		flag = 1;
 		// 1ならクリアした 0なら死んだ
+	}
+
+	public static bool istimeover(){
+		return timeover;
+	}
+
+	public static void truetimeover(bool a){
+		timeover = a;
+	}
+
+	public static bool ismapclear(){
+		return mapclear;
+	}
+
+	public static void truemapclear(bool a){
+		mapclear = a;
 	}
 
 }
