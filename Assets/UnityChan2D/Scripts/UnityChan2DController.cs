@@ -26,6 +26,9 @@ public class UnityChan2DController : MonoBehaviour{
     public GameObject se;       //SE鳴らすためのもの
 
     public bool die = false;    //死んだかの判定
+
+    public bool dieplayed = false;
+    public bool goplayed = false;
     
     void Reset(){
         Awake();
@@ -85,14 +88,15 @@ public class UnityChan2DController : MonoBehaviour{
             die = true;         //死亡判定ON
             count.sethit(3);    //count.csに3回あたったことを一応記録
             if (count.getlife() == 0){                          //もし残基が0だったら・・・(先にゲームオーバー時の処理)
-                if (!se.GetComponent<playse>().dieplaying()){       //かつ死亡ジングルが流れ終わってたら(死亡ジングルはOnTriggerStay2Dで流しています)
+                if ( (!se.GetComponent<playse>().dieplaying()) && (dieplayed) ){       //かつ死亡ジングルが流れ終わってたら(死亡ジングルはOnTriggerStay2Dで流しています)
                     se.GetComponent<playse>().playgameover();       //ゲームオーバージングルを流す
+                    goplayed = true;
                 }
-                if (!se.GetComponent<playse>().gameoverplaying()){  //もしゲームオーバージングルが流れ終わってたら
+                if ( (!se.GetComponent<playse>().gameoverplaying()) && (goplayed) ){  //もしゲームオーバージングルが流れ終わってたら
                     SceneManager.LoadScene ("Result");              //Resultシーンを呼び出します。
                 }
             } else {                                            //まだ残基に余裕があったら
-                if (!se.GetComponent<playse>().dieplaying()){       //死亡ジングルがなり終わっていたら
+                if ( (!se.GetComponent<playse>().dieplaying()) && (dieplayed) ){       //死亡ジングルがなり終わっていたら
                     count.sethit(0);                                //hit数を0に戻して、
                     SceneManager.LoadScene ("Loading " + nowworld.getworld()); //もう一回同じマップを呼び出す。
                 }
@@ -143,6 +147,7 @@ public class UnityChan2DController : MonoBehaviour{
                 
                 // 死亡ジングル音を鳴らす
                 se.GetComponent<playse>().playdie();
+                dieplayed = true;
             }
 
 
