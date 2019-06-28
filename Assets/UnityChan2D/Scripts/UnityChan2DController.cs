@@ -90,6 +90,11 @@ public class UnityChan2DController : MonoBehaviour{
             die = true;         //死亡判定ON
             count.sethit(3);    //count.csに3回あたったことを一応記録
             
+            if ((clearflag.istimeover()) && (!dieplayed)){
+                life--;
+                count.setlife(life);
+            }
+
             if (!dieplayed){
                 // 死亡ジングル音を鳴らす
                 se.GetComponent<playse>().playdie();
