@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class showGO : MonoBehaviour {
 
+	public GUIText GOText;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -11,6 +13,8 @@ public class showGO : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		if (clearflag.isgameover()){
+			GOText.text = "GAME OVER";
+		}
 	}
 }
