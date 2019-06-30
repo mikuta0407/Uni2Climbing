@@ -106,13 +106,13 @@ public class camera : MonoBehaviour{
             nextLevel = "1-5";
         } else if (nowLevel == "1-5"){
             //1-5は最終ステージなので、オールクリアしたことをclearflag.cs内に記録
-            clearflag.setflag();
+            clearflag.set15flag();
             nextLevel = "Result";
         }
 
         //現在のレベル状況をこの時点で書き換え。
         nowworld.setworld(nextLevel);
-        if (clearflag.getflag() == 1){
+        if (clearflag.get15flag() == 1){
             SceneManager.LoadScene (nextLevel);     //ResultにはLoadingって文字はないので・・・
         } else {
             SceneManager.LoadScene ("Loading " + nextLevel);

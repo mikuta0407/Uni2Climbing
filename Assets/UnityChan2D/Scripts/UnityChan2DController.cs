@@ -96,6 +96,7 @@ public class UnityChan2DController : MonoBehaviour{
             }
 
             if (!dieplayed){
+                m_animator.Play("Idle");
                 // 死亡ジングル音を鳴らす
                 se.GetComponent<playse>().playdie();
                 dieplayed = true;
@@ -107,6 +108,7 @@ public class UnityChan2DController : MonoBehaviour{
                 if ( (!se.GetComponent<playse>().dieplaying()) && (dieplayed) && (!goplayed)){       //かつ死亡ジングルが流れ終わってたら(死亡ジングルはOnTriggerStay2Dで流しています)
                     //Debug
                     Debug.Log("ゲームオーバー時の処理に入りました｡");
+                    clearflag.truegameover(true);
                     
                     se.GetComponent<playse>().playgameover();       //ゲームオーバージングルを流す
                     goplayed = true;
@@ -168,10 +170,6 @@ public class UnityChan2DController : MonoBehaviour{
                 life--;                 //残基減らして
                 Debug.Log("Life=" + life);
                 count.setlife(life);    //それを記録
-                
-                // 死亡ジングル音を鳴らす
-                se.GetComponent<playse>().playdie();
-                dieplayed = true;
             }
 
 

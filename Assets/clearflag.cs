@@ -14,11 +14,13 @@ public class clearflag : MonoBehaviour {
 	public static bool mapclear;
 
 	public static bool timeover = false;
-	public static int getflag(){
+
+	public static bool gameover = false;
+	public static int get15flag(){
 		return flag;
 	}
 
-	public static void setflag(){
+	public static void set15flag(){
 		flag = 1;
 		// 1ならクリアした 0なら死んだ
 	}
@@ -37,6 +39,14 @@ public class clearflag : MonoBehaviour {
 
 	public static void truemapclear(bool a){
 		mapclear = a;
+	}
+
+	public static bool isgameover(){
+		return gameover;
+	}
+
+	public static void truegameover(bool a){
+		gameover = a;
 	}
 
 }
