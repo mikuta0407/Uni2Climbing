@@ -112,7 +112,7 @@ public class camera : MonoBehaviour{
 
         //現在のレベル状況をこの時点で書き換え。
         nowworld.setworld(nextLevel);
-        if (clearflag.get15flag() == 1){
+        if (clearflag.get15flag()){
             SceneManager.LoadScene (nextLevel);     //ResultにはLoadingって文字はないので・・・
         } else {
             SceneManager.LoadScene ("Loading " + nextLevel);

@@ -9,19 +9,19 @@ using UnityEngine;
 public class clearflag : MonoBehaviour {
 
 	//やってることはそのまんまです。flagもboolにしたいね
-	public static int flag = 0; //(1-5)
+	public static bool flag = false; //(1-5)
 
 	public static bool mapclear;
 
 	public static bool timeover = false;
 
 	public static bool gameover = false;
-	public static int get15flag(){
+	public static bool get15flag(){
 		return flag;
 	}
 
 	public static void set15flag(){
-		flag = 1;
+		flag = true;
 		// 1ならクリアした 0なら死んだ
 	}
 

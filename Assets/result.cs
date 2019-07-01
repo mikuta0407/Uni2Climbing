@@ -14,7 +14,7 @@ public class result : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		
-		if (clearflag.get15flag() == 1){				//1-5まできてたら(clearflagが有効のとき)
+		if (clearflag.get15flag()){				//1-5まできてたら(clearflagが有効のとき)
 			cong.text = "congratulation!!";
 			cleared.text = "YOU cleared the game!!";
 		} else {									//clearflagが無効(途中でゲームオーバー)してたら
