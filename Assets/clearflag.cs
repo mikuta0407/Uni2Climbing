@@ -9,7 +9,7 @@ using UnityEngine;
 public class clearflag : MonoBehaviour {
 
 	//やってることはそのまんまです。flagもboolにしたいね
-	public static bool flag = false; //(1-5)
+	public static bool flag15 = false; //(1-5)
 
 	public static bool mapclear;
 
@@ -18,12 +18,14 @@ public class clearflag : MonoBehaviour {
 	public static bool gameover = false;
 
 	public static bool fwc = false;
+
+	public static bool died = false;
 	public static bool get15flag(){
-		return flag;
+		return flag15;
 	}
 
-	public static void set15flag(){
-		flag = true;
+	public static void set15flag(bool a){
+		flag15 = a;
 		// 1ならクリアした 0なら死んだ
 	}
 
@@ -57,6 +59,14 @@ public class clearflag : MonoBehaviour {
 
 	public static void truefwc(bool a){
 		fwc = a;
+	}
+
+	public static bool isdied(){
+		return died;
+	}
+
+	public static void truedied(bool a){
+		fwc = died;
 	}
 
 }

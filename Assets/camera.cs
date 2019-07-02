@@ -31,8 +31,12 @@ public class camera : MonoBehaviour{
         //BGMの再生開始。(BGMはInspectorで設定)
         bgm.Play();
 
-        clearflag.truetimeover(false);
+        clearflag.set15flag(false);
         clearflag.truemapclear(false);
+        clearflag.truetimeover(false);
+        clearflag.truegameover(false);
+        clearflag.truefwc(false);
+        clearflag.truedied(false);
     }
 
     // Update is called once per frame
@@ -83,7 +87,7 @@ public class camera : MonoBehaviour{
 
         //1-5は最終ステージなので、オールクリアしたことをclearflag.cs内に記録
         if (nowLevel == "1-5"){
-            clearflag.set15flag();
+            clearflag.set15flag(true);
         }
 
         ////ゴールジングルを再生(playse.csにて制御。PLAYSEオブジェクトを使用)
@@ -98,7 +102,13 @@ public class camera : MonoBehaviour{
 
         //残り時間をスコアに変換。
         //timesaver.csから時間が取れるので、それをscoresaverを使って記録。
-        scoresaver.setscore( ( (Convert.ToInt32(scoresaver.getscore())) + (timesaver.gettime()*10) ) .ToString("0000000") );
+        if (!clearflag.isdied()){
+            scoresaver.setscore( ( (Convert.ToInt32(scoresaver.getscore())) + (timesaver.gettime()*10) ) .ToString("0000000") );
+        }
+
+        if (clearflag.isdied()){
+            scoresaver.setscore( ( (Convert.ToInt32(scoresaver.getscore())) - 600 ) .ToString("0000000") );
+        }
 
         //コルーチンなのでreturnがいるので虚無する。        
         yield return new WaitForSeconds(0);

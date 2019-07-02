@@ -92,6 +92,7 @@ public class UnityChan2DController : MonoBehaviour{
             
             if ((clearflag.istimeover()) && (!dieplayed)){
                 life--;
+                clearflag.truedied(true);
                 count.setlife(life);
             }
 
@@ -168,6 +169,7 @@ public class UnityChan2DController : MonoBehaviour{
             
             if (hitcount == 3){         //3回あたってたら
                 life--;                 //残基減らして
+                clearflag.truedied(true);
                 Debug.Log("Life=" + life);
                 count.setlife(life);    //それを記録
             }
