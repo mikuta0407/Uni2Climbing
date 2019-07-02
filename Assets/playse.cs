@@ -9,6 +9,9 @@ public class playse : MonoBehaviour {
     public AudioSource goal;
 	public AudioSource die;
 	public AudioSource gameover;
+
+	public AudioSource finalclear;
+
     public void playgoal () {		//ゴールしたとき
         goal.Play();
 	}
@@ -21,6 +24,10 @@ public class playse : MonoBehaviour {
        gameover.Play();
     }
 
+	public void playfinal () {		//1-5ゴールしたとき
+        finalclear.Play();
+	}
+
 	public bool goalplaying(){		//ゴールジングルが鳴ってるか鳴ってないかを通知
 		return goal.isPlaying;
 	}
@@ -32,4 +39,9 @@ public class playse : MonoBehaviour {
 	public bool gameoverplaying(){	//GameOverジングルが鳴ってるか鳴ってないかを通知
 		return gameover.isPlaying;
 	}
+
+	public bool finalplaying(){		//1-5ジングルが鳴ってるか鳴ってないかを通知
+		return finalclear.isPlaying;
+	}
+	
 }

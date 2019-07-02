@@ -12,9 +12,14 @@ public class camera : MonoBehaviour{
     GameObject player;          //プレイヤーを追従するため用
 
     public static bool goal = false;    //ゴール自体をしたかの判定
+
     bool clear = false;                 //シーンチェンジに突入したか判定
 
-    
+    bool playedgoal = false;              //ゴールジングルの再生
+    bool playedfinal = false;             //1-5ジングルの再生
+
+    bool playedalljingle = false;
+
     // Use this for initialization
     void Start(){
         //ゴールしてないよ!っていうやつ
@@ -58,10 +63,15 @@ public class camera : MonoBehaviour{
 
         
         // ゴールジングル鳴り終わったらシーン遷移
-        if ((!clear) && (goal) && (!se.GetComponent<playse>().goalplaying())){
-            Debug.Log("シーンを変えますよ!");
-            changeScene();
+        if ((!clear) && (goal)){
+            if (!playedalljingle){
+                playjingle();
+            } else {
+                Debug.Log("シーンを変えますよ!");
+                changeScene();
+            }
         }
+
 
         
 
@@ -71,8 +81,13 @@ public class camera : MonoBehaviour{
         //BGMを停止
         bgm.Stop();
 
-        //ゴールジングルを再生(playse.csにて制御。PLAYSEオブジェクトを使用)
-        se.GetComponent<playse>().playgoal();
+        //1-5は最終ステージなので、オールクリアしたことをclearflag.cs内に記録
+        if (nowLevel == "1-5"){
+            clearflag.set15flag();
+        }
+
+        ////ゴールジングルを再生(playse.csにて制御。PLAYSEオブジェクトを使用)
+        //se.GetComponent<playse>().playgoal();
 
         //goalフラッグをtrueに。これしないとUpdateでこれが呼び出されまくる
         goal = true;
@@ -105,8 +120,6 @@ public class camera : MonoBehaviour{
         } else if (nowLevel == "1-4"){
             nextLevel = "1-5";
         } else if (nowLevel == "1-5"){
-            //1-5は最終ステージなので、オールクリアしたことをclearflag.cs内に記録
-            clearflag.set15flag();
             nextLevel = "Result";
         }
 
@@ -117,6 +130,32 @@ public class camera : MonoBehaviour{
         } else {
             SceneManager.LoadScene ("Loading " + nextLevel);
         }
+    }
+
+    void playjingle(){
+        if (!playedgoal){
+            se.GetComponent<playse>().playgoal();
+            playedgoal = true;
+        }
+            
+        if ((nowLevel == "1-5") &&  ((!se.GetComponent<playse>().goalplaying())) && (clearflag.get15flag()) && (playedgoal) && (!playedfinal)){
+            se.GetComponent<playse>().playfinal();
+            playedfinal = true;
+        }
+
+        //if ((!se.GetComponent<playse>().goalplaying()) && (!se.GetComponent<playse>().finalplaying()) && (playedgoal) && ((nowLevel == "1-5") && (playedfinal))){
+        if (!se.GetComponent<playse>().goalplaying()) {
+            if (!se.GetComponent<playse>().finalplaying()) {
+                if (playedgoal) {
+                    if ((nowLevel == "1-5") && (playedfinal) || (nowLevel != "1-5")){
+                        Debug.Log("必要なジングルが鳴り終わりました");
+                        playedalljingle = true;
+                    }
+                }
+            }
+
+        }
+
     }
     
 }
