@@ -78,7 +78,7 @@ public class UnityChan2DController : MonoBehaviour{
         if (m_state != State.Damaged){      //ダメージ受けてない間・・・
             float x = Input.GetAxis("Horizontal");      //ここの挙動はQiitaにあるので省略
             bool jump = Input.GetButtonDown("Jump");    //同上
-            if (!die){                                  //まだ死んでなかったら・・・
+            if ((!clearflag.ismapclear()) && (!die)){                                  //まだ死んでなかったら・・・
                 Move(x, jump);                          //Move関数使って動かす
             } else {                                    //死んでたら・・・
                 Move(0, false);                         //動きを止める(キー操作無効のため)

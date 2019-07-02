@@ -12,7 +12,7 @@ public class StartController : MonoBehaviour{
     private string worldName;
     void Update(){
 
-        if (Input.GetKeyDown(KeyCode.Return)) { //Enter押されたら
+        if ((Input.GetKeyDown(KeyCode.Return)) || (Input.GetKeyDown ("joystick button 7"))) { //Enter押されたら
             worldName = "Loading 1-1";          //次読むこむのをLoading1-1にして(デバッグ用に選べるようにしていた名残)
             nowworld.setworld("1-1");           //nowworldで1-1にセットして
             StartCoroutine(LoadStage());        //シーン読み込みを開始。
