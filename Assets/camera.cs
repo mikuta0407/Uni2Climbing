@@ -139,6 +139,7 @@ public class camera : MonoBehaviour{
         }
             
         if ((nowLevel == "1-5") &&  ((!se.GetComponent<playse>().goalplaying())) && (clearflag.get15flag()) && (playedgoal) && (!playedfinal)){
+            clearflag.truefwc(true);
             se.GetComponent<playse>().playfinal();
             playedfinal = true;
         }

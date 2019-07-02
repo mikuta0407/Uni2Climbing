@@ -16,6 +16,8 @@ public class clearflag : MonoBehaviour {
 	public static bool timeover = false;
 
 	public static bool gameover = false;
+
+	public static bool fwc = false;
 	public static bool get15flag(){
 		return flag;
 	}
@@ -47,6 +49,14 @@ public class clearflag : MonoBehaviour {
 
 	public static void truegameover(bool a){
 		gameover = a;
+	}
+
+	public static bool isfwc(){
+		return fwc;
+	}
+
+	public static void truefwc(bool a){
+		fwc = a;
 	}
 
 }
