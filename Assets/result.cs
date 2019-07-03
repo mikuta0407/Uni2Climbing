@@ -27,7 +27,7 @@ public class result : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {	//Spaceキー押されたらStartシーンに戻るため
-		if (Input.GetKeyDown(KeyCode.Space)) {
+		if ( (Input.GetKeyDown(KeyCode.Space)) || (Input.GetKeyDown ("joystick button 7")) ) {
             SceneManager.LoadScene ("Start");
         }
 	}
