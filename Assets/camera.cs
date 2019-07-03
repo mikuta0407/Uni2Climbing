@@ -76,6 +76,10 @@ public class camera : MonoBehaviour{
             }
         }
 
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            SceneManager.LoadScene ("Start");
+        }
+
 
         
 
