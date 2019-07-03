@@ -12,4 +12,5 @@ public class LoadingController : MonoBehaviour
 
         Application.LoadLevel(nextLevel);
     }
+
 }

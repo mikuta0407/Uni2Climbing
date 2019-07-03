@@ -80,6 +80,10 @@ public class camera : MonoBehaviour{
             SceneManager.LoadScene ("Start");
         }
 
+        if (Input.GetKeyDown(KeyCode.F)){
+            Screen.fullScreen = !Screen.fullScreen;
+        }
+
 
         
 

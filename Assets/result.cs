@@ -30,5 +30,9 @@ public class result : MonoBehaviour {
 		if ( (Input.GetKeyDown(KeyCode.Space)) || (Input.GetKeyDown ("joystick button 7")) ) {
             SceneManager.LoadScene ("Start");
         }
+		
+        if (Input.GetKeyDown(KeyCode.F)){
+            Screen.fullScreen = !Screen.fullScreen;
+        }
 	}
 }
