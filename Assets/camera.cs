@@ -50,7 +50,7 @@ public class camera : MonoBehaviour{
 		transform.rotation = Quaternion.Euler(0,0,0);
 
         //もしゴール範囲内に入ったら
-		if ((!clear) && (!goal) && (playerPos.x <= 0) && (playerPos.y >= 91)){
+		if ((!clear) && (!goal) && (playerPos.x <= -4) && (playerPos.y >= 91)){
 			StartCoroutine(INTERNAL_Clear());
             //enabled = false;
 		}
