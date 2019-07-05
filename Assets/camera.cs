@@ -20,6 +20,8 @@ public class camera : MonoBehaviour{
 
     bool playedalljingle = false;
 
+    public bool isfc;
+
     // Use this for initialization
     void Start(){
         //ゴールしてないよ!っていうやつ
@@ -37,10 +39,16 @@ public class camera : MonoBehaviour{
         clearflag.truegameover(false);
         clearflag.truefwc(false);
         clearflag.truedied(false);
+
+        //Screen.fullScreen = false;
+        //Debug.Log("現在のスクリーン状態:↓");
+        //Debug.Log(Screen.fullScreen);
     }
 
     // Update is called once per frame
     void Update(){
+
+        isfc = Screen.fullScreen;
         //カメラの位置移動
         //プレイヤーの位置を取得
         Vector3 playerPos = this.player.transform.position;
@@ -80,11 +88,26 @@ public class camera : MonoBehaviour{
             SceneManager.LoadScene ("Start");
         }
 
-        if (Input.GetKeyDown(KeyCode.F)){
-            Screen.fullScreen = !Screen.fullScreen;
+        //if (Input.GetKeyDown(KeyCode.F)){
+        //    if (Screen.fullScreen == false){
+        //        Debug.Log("現在のモードはウィンドウモードです。フルスクリーンに切り替えます。");
+        //        Screen.fullScreen = true;
+        //        Debug.Log(Screen.fullScreen);
+        //        Debug.Log("フルスクリーンに切り替えました");
+        //    } else {
+        //        Debug.Log("現在のモードはフルスクリーンです。ウィンドウモードに切り替えます。");
+        //        Screen.fullScreen = false;
+        //        Debug.Log(Screen.fullScreen);
+        //        Debug.Log("ウィンドウモードに切り替えました。");
+        //    }
+        //}
+
+        if (Input.GetKeyDown(KeyCode.O)){
+            Screen.fullScreen = false;
         }
-
-
+        if (Input.GetKeyDown(KeyCode.P)){
+            Screen.fullScreen = true;
+        }
         
 
     }

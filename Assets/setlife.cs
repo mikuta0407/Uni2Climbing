@@ -18,9 +18,9 @@ public class setlife : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update (){
-        if (Input.GetKeyDown(KeyCode.F)){
-            Screen.fullScreen = !Screen.fullScreen;
-        }
-    }
+	//void Update (){
+    //    if (Input.GetKeyDown(KeyCode.F)){
+    //        Screen.fullScreen = !Screen.fullScreen;
+    //    }
+    //}
 }

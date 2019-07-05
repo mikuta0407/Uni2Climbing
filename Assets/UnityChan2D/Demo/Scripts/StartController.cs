@@ -10,11 +10,20 @@ public class StartController : MonoBehaviour{
     [SerializeField]
     // private KeyCode enter = KeyCode.X;
     private string worldName;
+
+    void Start(){
+        //Screen.fullScreen = false;
+        Debug.Log("現在のスクリーン状態:↓");
+        Debug.Log(Screen.fullScreen);
+    }
     void Update(){
 
-        if (Input.GetKeyDown(KeyCode.F)){
-            Screen.fullScreen = !Screen.fullScreen;
-        }
+        //if (Input.GetKeyDown(KeyCode.F)){
+        //    Screen.fullScreen = !Screen.fullScreen;
+        //    Debug.Log(Screen.fullScreen);
+        //}
+
+
         
         if ((Input.GetKeyDown(KeyCode.Return)) || (Input.GetKeyDown ("joystick button 7"))) { //Enter押されたら
             worldName = "Loading 1-1";          //次読むこむのをLoading1-1にして(デバッグ用に選べるようにしていた名残)
