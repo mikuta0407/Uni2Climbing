@@ -652,6 +652,10 @@ Prefab:
       propertyPath: se
       value: 
       objectReference: {fileID: 147164212}
+    - target: {fileID: 5000000, guid: e3ff126a806b2454eaff021fe39cea19, type: 2}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e3ff126a806b2454eaff021fe39cea19, type: 2}
   m_IsPrefabParent: 0
@@ -4840,6 +4844,7 @@ MonoBehaviour:
   nextLevel: 
   se: {fileID: 147164212}
   bgm: {fileID: 720363508}
+  isfc: 0
 --- !u!82 &720363508
 AudioSource:
   m_ObjectHideFlags: 0
