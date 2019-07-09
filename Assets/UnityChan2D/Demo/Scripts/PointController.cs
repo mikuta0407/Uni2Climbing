@@ -29,6 +29,10 @@ public class PointController : MonoBehaviour
         total.text = scoresaver.getscore();                                     //まずscoresaverからスコアを改めて取得します
         coin.text = scoresaver.getcoin();                                       //同じくCoinも取得します
         coin.text = (Convert.ToInt32(coin.text) + 1).ToString("00");            //コイン数を一枚増やします(この時点で書き換えしてる)
+        if (Convert.ToInt32(coin.text) == 100){
+            count.setlife(count.getlife() + 1);
+            coin.text = "00";
+        }
         total.text = (Convert.ToInt32(total.text) + 100).ToString("0000000");   //スコアに100を足します(この時点で書き換えしてる)
         scoresaver.setscore(total.text);                                        //新しいスコアをscoresaverに書き込みます。
         scoresaver.setcoin(coin.text);                                          //同じくコインも行います。

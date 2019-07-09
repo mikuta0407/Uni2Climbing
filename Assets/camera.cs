@@ -102,11 +102,8 @@ public class camera : MonoBehaviour{
         //    }
         //}
 
-        if (Input.GetKeyDown(KeyCode.O)){
-            Screen.fullScreen = false;
-        }
         if (Input.GetKeyDown(KeyCode.P)){
-            Screen.fullScreen = true;
+            scoresaver.setcoin("98");
         }
         
 

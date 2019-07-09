@@ -31,16 +31,14 @@ public class UnityChan2DController : MonoBehaviour{
     public bool goplayed = false;
 
     public bool s_changestart = false;
-
-    public float maxy = -10;
     
     void Reset(){
         Awake();
 
         // UnityChan2DController
         maxSpeed = 10f;
-        jumpPower = 20;
-        //backwardForce = new Vector2(-4.5f, 5.4f);
+        jumpPower = 1000;
+        backwardForce = new Vector2(-4.5f, 5.4f);
         whatIsGround = 1 << LayerMask.NameToLayer("Ground");
 
         // Transform
@@ -67,28 +65,7 @@ public class UnityChan2DController : MonoBehaviour{
         life = count.getlife();     //↑の残基版
     }
 
-    /// 直前のFixedUpdateフレームでの位置
-    Vector2 _preFramePos = new Vector2();
-
-    /// 直前のFixedUpdateフレームで移動操作をしたかどうか
-    bool _isMovePreFlame = false;
-
-    /// 床の境目にひっかかったときに上に押し上げる移動量
-    public float _deltaUpwardPos = 0.03f;
-
-    /// 前のフレームとのX変位限界 移動量がこの範囲内ならひっかかってるとみなす
-    public float _deltaRangeX = 0.001f;
-
-    /// Updateでジャンプ入力を受け付けたフラグ FixedUpdateでこのフラグを見てジャンプ
-    bool _jumpFlag = false;
-
-    /// 十字キーによる移動量
-    float _deltaX = 0;
-
     void Update(){
-        if (maxy <= transform.position.y){
-            maxy = transform.position.y;
-        }
         life = count.getlife();     //引き継いではいるんだけど、コイン100枚採ったとき用に...
         hitcount = count.gethit();  //↑+普通にあたったとき用
 
@@ -99,14 +76,12 @@ public class UnityChan2DController : MonoBehaviour{
         }
 
         if (m_state != State.Damaged){      //ダメージ受けてない間・・・
-            //float x = Input.GetAxis("Horizontal");      //ここの挙動はQiitaにあるので省略
-            //bool jump = Input.GetButtonDown("Jump");    //同上
-            if ((clearflag.ismapclear()) || (die)){                                  //まだ死んでなかったら・・・
-                _deltaX = 0;
-                _jumpFlag = false;
-            } else {
-                _deltaX = Input.GetAxis("Horizontal");
-                _jumpFlag = Input.GetButtonDown("Jump");
+            float x = Input.GetAxis("Horizontal");      //ここの挙動はQiitaにあるので省略
+            bool jump = Input.GetButtonDown("Jump");    //同上
+            if ((!clearflag.ismapclear()) && (!die)){                                  //まだ死んでなかったら・・・
+                Move(x, jump);                          //Move関数使って動かす
+            } else {                                    //死んでたら・・・
+                Move(0, false);                         //動きを止める(キー操作無効のため)
             }
         }
 
@@ -158,51 +133,8 @@ public class UnityChan2DController : MonoBehaviour{
         
     }
 
-    
     void Move(float move, bool jump){
-        //地上にいるとき
-        //前のフレームで移動操作を行っており、かつ前のフレームとのX変位がないorほぼない場合に
-        //目の前に障害物があるか確認し、ないならばY位置を微上昇
-        //要するにめりこみ段差にひっかかったらちょっと上へ移動させる
-        if (_isMovePreFlame && Mathf.Abs(transform.position.x - _preFramePos.x) < _deltaRangeX && m_isGround)
-        {
-            var pos = transform.position;
-            var direction = Mathf.Cos(transform.rotation.y);
-            var lineEndPos = new Vector2(pos.x + (m_boxcollier2D.size.x / 2 + 0.1f) * direction, pos.y);
-
-            //進行方向のプレイヤー先端で壁ブロック検知 
-            bool isHitForward = Physics2D.Linecast(pos,lineEndPos,whatIsGround);
-            
-            //めりこみによる段差で床にひっかかったら微上昇 上昇量を増やすとどこで引っかかったかわかりやすい
-            if ((isHitForward) && (m_isGround) && (move != 0))
-                transform.position = new Vector3(pos.x, pos.y + _deltaUpwardPos, pos.z);
-        }
-        _preFramePos = transform.position;
-        _isMovePreFlame = false;
-
-        if (Mathf.Abs(move) > 0)
-        {
-            //向き反転
-            Quaternion rot = transform.rotation;
-            transform.rotation = Quaternion.Euler(rot.x, Mathf.Sign(move) == 1 ? 0 : 180, rot.z);
-
-            _isMovePreFlame = true;
-        }
-        
-        m_animator.SetFloat("Horizontal", move);
-        m_animator.SetFloat("Vertical", m_rigidbody2D.velocity.y);
-        m_animator.SetBool("isGround", m_isGround);
-
-        if (jump && m_isGround)
-        {
-            jump = false;
-            m_animator.SetTrigger("Jump");
-            SendMessage("Jump", SendMessageOptions.DontRequireReceiver);
-            m_rigidbody2D.velocity = new Vector2(move * maxSpeed, jumpPower);
-        }
-
-        m_rigidbody2D.velocity = new Vector2(move * maxSpeed, m_rigidbody2D.velocity.y);
-        /* if (Mathf.Abs(move) > 0){
+        if (Mathf.Abs(move) > 0){
             Quaternion rot = transform.rotation;
             transform.rotation = Quaternion.Euler(rot.x, Mathf.Sign(move) == 1 ? 0 : 180, rot.z);
         }
@@ -217,7 +149,7 @@ public class UnityChan2DController : MonoBehaviour{
             m_animator.SetTrigger("Jump");
             SendMessage("Jump", SendMessageOptions.DontRequireReceiver);
             m_rigidbody2D.AddForce(Vector2.up * jumpPower);
-        } */
+        }
     }
 
     void FixedUpdate(){
@@ -227,11 +159,11 @@ public class UnityChan2DController : MonoBehaviour{
 
         m_isGround = Physics2D.OverlapArea(groundCheck + groundArea, groundCheck - groundArea, whatIsGround);
         m_animator.SetBool("isGround", m_isGround);
-        Move(_deltaX, _jumpFlag);
     }
 
     void OnTriggerStay2D(Collider2D other){     //敵にあたったとき
-        if (other.tag == "DamageObject" && m_state == State.Normal){
+        if (other.tag == "DamageObject" && m_state == State.Normal)
+        {
             hitcount++;                 //hitcountを増やす
             count.sethit(hitcount);     //それを記録する
             
@@ -254,11 +186,7 @@ public class UnityChan2DController : MonoBehaviour{
 
         SendMessage("OnDamage", SendMessageOptions.DontRequireReceiver);
 
-        Debug.Log("transform.right.x: " +transform.right.x);
-        Debug.Log("transform.up.y: " +transform.up.y);
-        m_rigidbody2D.velocity = new Vector2(transform.right.x * -4.5f, transform.up.y * 5.4f);
-        Debug.Log("x: " + (transform.right.x * 4.5f) + " y: " + (transform.up.y * 5.4f));
-        //m_rigidbody2D.velocity = new Vector2(transform.right.x * backwardForce.x, * backwardForce.y);
+        m_rigidbody2D.velocity = new Vector2(transform.right.x * backwardForce.x, transform.up.y * backwardForce.y);
 
         yield return new WaitForSeconds(.2f);
 
